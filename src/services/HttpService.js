@@ -7,14 +7,14 @@ class HttpService {
     const {
       method = httpMethods.GET,
       body = null,
-      query
+      queryParams
     } = options;
 
     const headers = {
       'Content-Type': contentTypes.JSON
     };
 
-    return fetch(this.getUrl(url, query), {
+    return fetch(this.getUrl(url, queryParams), {
       method,
       headers,
       body: Boolean(body) ? JSON.stringify(body) : undefined,
@@ -25,8 +25,8 @@ class HttpService {
       .catch(this.throwError);
   }
 
-  getUrl(url, query) {
-    return `${url}${query ? generateQueryParams(query) : ''}`;
+  getUrl(url, queryParams) {
+    return `${url}${queryParams ? generateQueryParams(queryParams) : ''}`;
   }
 
   async checkStatus(response) {

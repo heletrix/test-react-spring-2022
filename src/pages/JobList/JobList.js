@@ -14,7 +14,7 @@ import {
     MainColumn,
     ColumnAlignRight,
     GrayTitle,
-    BoldText,
+    SearchWrapper,
     CapitalizedBoldText,
     Button,
     NameSpan,
@@ -31,8 +31,10 @@ const JobList = () => {
     return (
         <FlexOneContainer>
         <Wrapper>
-            <Input placeholder="Search" register={register} name="search" />
             <Title>Job List</Title>
+            <SearchWrapper>
+                <Input placeholder="Search" register={register} name="search" />
+            </SearchWrapper>
             {jobList.map(({
                 id,
                 category,

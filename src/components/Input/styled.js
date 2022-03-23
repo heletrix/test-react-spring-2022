@@ -90,11 +90,6 @@ export const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-
-  margin-left: 24px;
-  &:first-child {
-    margin: 0;
-  }
 `;
 
 export const Label = styled.label`

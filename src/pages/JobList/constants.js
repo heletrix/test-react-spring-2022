@@ -36,7 +36,8 @@ export const jobList = [
         category: 'Painting + Drywall',
         date_created: '2022-03-22',
         status: 'Payment',
-        user_name: 'Yuriy'
+        user_name: 'Yuriy',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget libero ac nibh molestie pharetra id quis quam. Etiam lacus velit, aliquam nec mattis ut, bibendum vitae ante. Nam aliquet sem non nisi bibendum iaculis. Maecenas dignissim id nibh vel laoreet. Etiam aliquet leo at hendrerit ornare. Etiam venenatis eleifend auctor.'
     },
     {
         id: 6,

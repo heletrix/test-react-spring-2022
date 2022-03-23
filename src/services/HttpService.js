@@ -1,6 +1,6 @@
 import { HttpError } from 'common/exceptions';
 import { contentTypes, httpMethods } from 'common/enums';
-import { generateQueryParams } from 'common/helpers';
+import { generateQueryParams, parseResponse } from 'common/helpers';
 
 class HttpService {
   makeRequest(url, options) {
@@ -17,15 +17,16 @@ class HttpService {
     return fetch(this.getUrl(url, query), {
       method,
       headers,
-      body,
+      body: Boolean(body) ? JSON.stringify(body) : undefined,
     })
       .then(this.checkStatus)
-      .then(this.parseJSON)
+      .then((rawResponse) => this.parseJSON(rawResponse))
+      .then((response) => Promise.resolve(parseResponse(response)))
       .catch(this.throwError);
   }
 
   getUrl(url, query) {
-    return `${url}${query ? `?${generateQueryParams(query)}`: ''}`;
+    return `${url}${query ? generateQueryParams(query) : ''}`;
   }
 
   async checkStatus(response) {

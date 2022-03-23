@@ -63,10 +63,8 @@ const JobList = () => {
                   <ServiceLeftBlock>
                     <MainColumn>
                       <GrayTitle>
-                        {id} -
                         <NameSpan>
-                        {' '}
-                        {user_name}
+                          {user_name}
                         </NameSpan>
                         {category ? `${user_name ? ' - ' : ''}${category}` : ''}
                       </GrayTitle>

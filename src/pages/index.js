@@ -1,5 +1,7 @@
-import JobList from "./JobList";
+import JobList from './JobList';
+import App from './App';
 
 export {
-    JobList
-}
+  JobList,
+  App
+};

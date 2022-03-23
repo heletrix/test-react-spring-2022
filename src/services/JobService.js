@@ -1,0 +1,19 @@
+import { apiPath, httpMethods } from 'common/enums';
+import { BASE_API_URL } from 'common/constants';
+
+class JobService {
+  #httpService;
+  #baseUrl = `${BASE_API_URL}${apiPath.JOBS}`;
+
+  constructor({ httpService }) {
+    this.#httpService = httpService;
+  }
+
+  getAll() {
+    return this.#httpService.makeRequest(this.#baseUrl, {
+      method: httpMethods.GET
+    });
+  }
+}
+
+export default JobService;

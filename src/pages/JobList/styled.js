@@ -15,13 +15,10 @@ export const Wrapper = styled.div`
   align-self: center;
 `;
 
-export const BoldText = styled.div`
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-  ${({ marginBottom }) => marginBottom && `margin-bottom: ${marginBottom}px`};
-`;
-
+export const SearchWrapper = styled.div` 
+  margin-bottom: 15px;
+  padding: 0 20px;
+`
 export const Row = styled.div`
   display: flex;
   align-items: center;
@@ -31,7 +28,10 @@ export const NameSpan = styled.span`
   text-transform: capitalize;
 `;
 
-export const CapitalizedBoldText = styled(BoldText)`
+export const CapitalizedBoldText = styled.div`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
   text-transform: capitalize;
   padding-right: 9px;
   margin: auto 0;

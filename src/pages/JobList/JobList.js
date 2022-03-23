@@ -1,7 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllJobsFetch } from 'store/actions';
-import { selectJobList, selectJobListLoading } from 'store/reducers/job';
+import { selectJobList } from 'store/reducers/job';
+import { useForm } from 'react-hook-form';
+
+import { CreateJobModal, Input } from 'components';
 
 import {
   FlexOneContainer,
@@ -13,7 +16,7 @@ import {
   MainColumn,
   ColumnAlignRight,
   GrayTitle,
-  BoldText,
+  SearchWrapper,
   CapitalizedBoldText,
   Button,
   NameSpan,
@@ -21,67 +24,82 @@ import {
 } from './styled';
 
 const JobList = () => {
+  const [isCreateFormVisible, setIsCreateFormVisible] = useState(false);
+
+  const { register } = useForm();
+
   const dispatch = useDispatch();
   const { list } = useSelector((state) => ({
-    list: selectJobList(state),
-    loading: selectJobListLoading(state)
+    list: selectJobList(state)
   }));
 
   useEffect(() => {
     dispatch(getAllJobsFetch());
-  }, [dispatch, getAllJobsFetch]);
+  }, [dispatch]);
 
-  const handleAddJob = () => {
-
-  };
+  const handleToggleCreateJobModal = () => {
+    setIsCreateFormVisible((isCreateFormVisible) => !isCreateFormVisible)
+  }
 
   return (
     <FlexOneContainer>
-    <Wrapper>
+      <Wrapper>
         <Title>Job List</Title>
+        <SearchWrapper>
+          <Input placeholder="Search" register={register} name="search" />
+        </SearchWrapper>
         {list.map(({
           id,
-          service,
+          category,
+          description,
           date_created,
-          datetime_last_activity,
           status,
-          user
+          user_name
         }) => {
-        return (
+          return (
             <Fragment key={id}>
-            <ServiceWrapper onClick={() => {}}>
+              <ServiceWrapper onClick={() => {}}>
                 <ServiceInfoRow>
-                <ServiceLeftBlock>
+                  <ServiceLeftBlock>
                     <MainColumn>
-                    <GrayTitle>
+                      <GrayTitle>
                         {id} -
                         <NameSpan>
                         {' '}
-                        {user?.given_name} {user?.family_name}{' '}
+                        {user_name}
                         </NameSpan>
-                        {user?.id ? `(${user?.id})` : ''}
-                        {service?.name ? `${user?.id ? ' - ' : ''}${service.name}` : ''}
-                    </GrayTitle>
-                    <Row>
+                        {category ? `${user_name ? ' - ' : ''}${category}` : ''}
+                      </GrayTitle>
+                      <Row>
                         <CapitalizedBoldText>{status}</CapitalizedBoldText>
-                    </Row>
+                      </Row>
                     </MainColumn>
-                </ServiceLeftBlock>
-                <ColumnAlignRight>
+                  </ServiceLeftBlock>
+
+                  <ColumnAlignRight>
                     <GrayTitle marginBottom={4}>
-                    Last Active: {datetime_last_activity}
+                      Requested date:
                     </GrayTitle>
-                    <BoldText>Req date: {date_created}</BoldText>
-                </ColumnAlignRight>
+                    <GrayTitle>
+                      {(new Date(date_created)).toDateString() || '-'}
+                    </GrayTitle>
+                  </ColumnAlignRight>
                 </ServiceInfoRow>
-            </ServiceWrapper>
+
+                <ServiceInfoRow>
+                  <GrayTitle>
+                    {description}
+                  </GrayTitle>
+                </ServiceInfoRow>
+              </ServiceWrapper>
             </Fragment>
-        );
+          );
         })}
-        <Button onClick={handleAddJob}>
-          Add job
+        <Button onClick={handleToggleCreateJobModal}>
+          Add a job
         </Button>
-    </Wrapper>
+      </Wrapper>
+      <CreateJobModal isVisible={isCreateFormVisible} onToggleModal={handleToggleCreateJobModal}/>
     </FlexOneContainer>
   );
 };

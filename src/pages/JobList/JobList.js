@@ -35,11 +35,11 @@ const JobList = () => {
             <Title>Job List</Title>
             {jobList.map(({
                 id,
-                service,
+                category,
+                description,
                 date_created,
-                datetime_last_activity,
                 status,
-                user
+                user_name
             }) => {
             return (
                 <Fragment key={id}>
@@ -51,10 +51,9 @@ const JobList = () => {
                             {id} -
                             <NameSpan>
                             {' '}
-                            {user?.given_name} {user?.family_name}{' '}
+                            {user_name}
                             </NameSpan>
-                            {user?.id ? `(${user?.id})` : ''}
-                            {service?.name ? `${user?.id ? ' - ' : ''}${service.name}` : ''}
+                            {category ? `${user_name ? ' - ' : ''}${category}` : ''}
                         </GrayTitle>
                         <Row>
                             <CapitalizedBoldText>{status}</CapitalizedBoldText>
@@ -63,17 +62,24 @@ const JobList = () => {
                     </ServiceLeftBlock>
                     <ColumnAlignRight>
                         <GrayTitle marginBottom={4}>
-                        Last Active: {datetime_last_activity}
+                        Requested date:
                         </GrayTitle>
-                        <BoldText>Req date: {date_created}</BoldText>
+                        <GrayTitle>
+                        {(new Date(date_created)).toDateString() || '-'}
+                        </GrayTitle>
                     </ColumnAlignRight>
+                    </ServiceInfoRow>
+                    <ServiceInfoRow>
+                        <GrayTitle>
+                            {description}
+                        </GrayTitle>
                     </ServiceInfoRow>
                 </ServiceWrapper>
                 </Fragment>
             );
             })}
             <Button onClick={onToggleCreateJobModal}>
-            Add job
+            Add a job
             </Button>
         </Wrapper>
         <CreateJobModal isVisible={isCreateFormVisible} onToggleModal={onToggleCreateJobModal}/>

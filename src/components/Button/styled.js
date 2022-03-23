@@ -38,7 +38,6 @@ export const StyledButton = styled.button`
   }};
   margin-bottom: 10px;
   ${({ margin }) => margin && `margin: ${margin}`};
-  font-family: 'HKGrotesk', sans-serif;
   transition: all 0.3s ease;
   width: ${({ isPlain }) => (isPlain ? 'auto' : '160px')};
   max-height: ${({ buttonStyle }) => {
@@ -117,7 +116,6 @@ export const StyledLink = styled.a`
   display: inline-block;
   text-align: center;
   padding: 10px;
-  font-family: NunitoSansSemiBold, serif;
   transition: all 0.3s;
   &:focus {
     outline: 0;

@@ -11,11 +11,11 @@ export const Wrapper = styled.div`
   padding: 25px 0 0;
   display: flex;
   flex-direction: column;
-  max-width: 450px;
+  width: 450px;
   align-self: center;
 `;
 
-export const SearchWrapper = styled.div` 
+export const SearchWrapper = styled.div`
   margin-bottom: 15px;
   padding: 0 20px;
 `

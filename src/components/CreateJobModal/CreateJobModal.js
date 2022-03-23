@@ -30,7 +30,7 @@ const CreateJobModal = ({
       maxHeight={0}>
       <ContentWrapper>
         <FlexRow>
-          <Input register={register} name="provider_name" label="Provider Name" />
+          <Input register={register} name="user_name" label="Customer Name" />
         </FlexRow>
         <FlexRow>
           <Input register={register} name="category" label="Category" />

@@ -1,5 +1,8 @@
 import { Fragment } from 'react';
+import { useForm } from 'react-hook-form';
+
 import { jobList } from './constants';
+import Input from '../../components/Input'
 
 import {
     FlexOneContainer,
@@ -19,13 +22,15 @@ import {
 } from './styled';
 
 const JobList = () => {
-
+    const { register } = useForm();
     const onAddJob = () => {
         
     }
+
     return (
         <FlexOneContainer>
         <Wrapper>
+            <Input placeholder="Search" register={register} name="search" />
             <Title>Job List</Title>
             {jobList.map(({
                 id,

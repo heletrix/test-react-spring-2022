@@ -1,8 +1,8 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { jobList } from './constants';
-import Input from '../../components/Input'
+import { CreateJobModal, Input } from '../../components';
 
 import {
     FlexOneContainer,
@@ -22,9 +22,10 @@ import {
 } from './styled';
 
 const JobList = () => {
+    const [isCreateFormVisible, setIsCreateFormVisible] = useState(false);
     const { register } = useForm();
-    const onAddJob = () => {
-        
+    const onToggleCreateJobModal = () => {
+        setIsCreateFormVisible((isCreateFormVisible) => !isCreateFormVisible)
     }
 
     return (
@@ -71,10 +72,11 @@ const JobList = () => {
                 </Fragment>
             );
             })}
-            <Button onClick={onAddJob}>
+            <Button onClick={onToggleCreateJobModal}>
             Add job
             </Button>
         </Wrapper>
+        <CreateJobModal isVisible={isCreateFormVisible} onToggleModal={onToggleCreateJobModal}/>
         </FlexOneContainer>
     );
 };

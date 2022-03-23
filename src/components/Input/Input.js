@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyledInput, InputRow, CloseButton, Label, FlexColumn, Error } from './styled';
 
 const Input = ({

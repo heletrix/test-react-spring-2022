@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import styles from '../../constants/styles';
 
 export const FlexOneContainer = styled.div`
   display: flex;
@@ -7,7 +6,6 @@ export const FlexOneContainer = styled.div`
   flex: 1;
   overflow: auto;
 `;
-
 
 export const Wrapper = styled.div`
   padding: 25px 0 0;
@@ -44,15 +42,15 @@ export const Title = styled.p`
   font-size: 12px;
   line-height: 14px;
   padding: 0 20px;
-  color: ${styles.colors.GRAY};
+  color: ${({ theme }) => theme.colors.GRAY};
 `;
 
 export const ServiceWrapper = styled.div`
-  border-bottom: 1px solid ${styles.colors.LIGHT_GRAY};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.LIGHT_GRAY};
   padding: 15px 20px 12px;
   &:hover {
     cursor: pointer;
-    background-color: ${styles.colors.LIGHT_GRAY_2};
+    background-color: ${({ theme }) => theme.colors.LIGHT_GRAY_2};
   }
 `;
 
@@ -71,7 +69,7 @@ export const GrayTitle = styled.p`
   font-weight: 600;
   font-size: 12px;
   line-height: 14px;
-  color: ${styles.colors.GRAY};
+  color: ${({ theme }) => theme.colors.GRAY};
   margin: 0 0 4px;
 `;
 
@@ -100,11 +98,11 @@ export const Button = styled.div`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.5;
-  color: ${styles.colors.GRAY};
+  color: ${({ theme }) => theme.colors.GRAY};
   padding: 15px 20px 20px;
 
   &:hover:not([disabled]) {
     cursor: pointer;
-    color: ${styles.colors.DARK_BLUE};
+    color: ${({ theme }) => theme.colors.DARK_BLUE};
   }
 `;

@@ -14,6 +14,19 @@ class JobService {
       method: httpMethods.GET
     });
   }
+
+  create(body) {
+    return this.#httpService.makeRequest(this.#baseUrl, {
+      method: httpMethods.POST,
+      body: {
+        ...body,
+        date_created: {
+          ".sv":"timestamp"
+        },
+      }
+    });
+  }
+
 }
 
 export default JobService;

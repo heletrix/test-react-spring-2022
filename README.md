@@ -15,6 +15,5 @@ It's a test task for the React developer position at Dobby.
 
 #### Additional links:
 - [React hook form documentation](https://react-hook-form.com/)
-- [Firebase saving data](https://firebase.google.com/docs/database/rest/save-data)
 
 In case of any questions contact me in telegram: [@heletrix](https://t.me/heletrix).
